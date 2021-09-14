@@ -32,7 +32,8 @@ As per the above listed entities and looking at their relationship , I go for sn
 
 The ER diagram is drawn below.
 
-
+![Image of ER Diagram]
+[https://github.com/callingsandesh/Leapfrog-Assignment/blob/main/Data/3rd%20Week(OLAP%20Design)/Day1/doc/logical%20model%20hospital%20warehousing(SNOWFLAKE).png]
 *FIG:Logical ER diagram of Hospital warehouse(SNOWFLAKE SCHEMA)*
 
 
