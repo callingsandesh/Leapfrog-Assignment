@@ -52,7 +52,7 @@ The physical implementation code of the hospital warehouse  is presented below i
 
 
 
-VISIT THE LINK PLEASE FOR PHYSICAL IMPLEMENTATION + REQUIREMENT IMPLEMENTATION:
+PLEASE VISIT THE LINK PLEASE FOR PHYSICAL IMPLEMENTATION + REQUIREMENT IMPLEMENTATION:
 LINK:
 <https://github.com/callingsandesh/Leapfrog-Assignment/blob/main/Data/3rd%20Week(OLAP%20Design)/Day1/hospital%20datawarehouse.ipynb> 
 
