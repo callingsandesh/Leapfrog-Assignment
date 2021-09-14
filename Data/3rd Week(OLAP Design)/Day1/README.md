@@ -1,4 +1,4 @@
-#Day 1 Assignment of OLAP Design
+# Day 1 Assignment of OLAP Design
 
 Open the doc folder , and the their is the "hospital warehouse.docx" file , 
 link : https://github.com/callingsandesh/Leapfrog-Assignment/blob/main/Data/3rd%20Week(OLAP%20Design)/Day1/doc/hospital%20warehouse.docx (download the docx file)
