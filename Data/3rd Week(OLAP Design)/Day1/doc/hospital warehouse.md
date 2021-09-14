@@ -45,19 +45,15 @@ The ER diagram is drawn below.
 This is the part where I will physically implement the model into the database.For that purpose we are gonna use PostgreSQL relational database.It is an open source DBMS.
 
 It uses the Standard Query Language(SQL) to create,update,alter ,delete the tables or any rows in the database.
-
 Firstly , I made the dummy datas for each table with some tuples in it in the Excel sheet.
-
 Then , I have used python and the driver of PostgreSQL which is Psycopg2 to push the 
-
 Data of .xlsx file into the Postgre DBMS.I have used Jupyter Notebook to write all of the code .
-
 The physical implementation code of the hospital warehouse  is presented below in my github repository link:
 
+
+
 VISIT THE LINK PLEASE FOR PHYSICAL IMPLEMENTATION + REQUIREMENT IMPLEMENTATION:
-
 LINK:
-
 <https://github.com/callingsandesh/Leapfrog-Assignment/blob/main/Data/3rd%20Week(OLAP%20Design)/Day1/hospital%20datawarehouse.ipynb> 
 
 
