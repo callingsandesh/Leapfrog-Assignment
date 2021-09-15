@@ -4,7 +4,7 @@ def connect():
                                   password="admin",
                                   host="localhost",
                                   port="5432",
-                                  database="olap_day_2_assignment"
+                                  database="olap_day_2_assignement"
                                   )
 
 

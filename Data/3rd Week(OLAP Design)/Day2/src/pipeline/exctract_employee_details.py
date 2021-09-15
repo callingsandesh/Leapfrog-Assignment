@@ -1,10 +1,10 @@
 import json
-# import sys
-# abs_filepath = '/home/sandesh/Desktop/Leapfrog/Data/3rd Week(OLAP Design)/Day2'
-# sys.path.append(abs_filepath)
+import sys
+abs_filepath = '/home/sandesh/Desktop/Leapfrog/Data/3rd Week(OLAP Design)/Day2/'
+sys.path.append(abs_filepath)
 
-
-from ..utils import connect              #connect() method inside utils
+#using absolute path 
+from src.utils import connect
 
 
 

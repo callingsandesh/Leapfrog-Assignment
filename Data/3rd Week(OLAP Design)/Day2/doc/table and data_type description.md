@@ -1,4 +1,4 @@
-# Day 2 Assignment
+﻿Day 2 Assignment
 
 To create a table employee , I have used the following SQL query.
 
