@@ -45,13 +45,19 @@ def extraxt_data_to_table_employee_from_json_or_xml(filepath):
             data=f.read()
     
 
-    #quety to remove prevous data if present
-    query_1 = "DELETE FROM employee"
-    execute_query(query_1)
+    #opening the delete_from_employee_table sql query
+    with open("../sql/delete_from_employee_table.sql") as sqlFile:
+        query=sqlFile.readlines()
+    
+    query=query[0].replace('\n','')
+
+    execute_query(query)
 
 
-    #query to insert the data
-    query_2 = "INSERT INTO employee VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    #opening the extract_employee_data sql query
+    with open("../sql/extract_employee_data.sql") as sqlFile:
+        query=sqlFile.readlines()
+    query_2 = query[0].replace('\n','')
     
     data_all=[]
     for item in data:
@@ -78,8 +84,9 @@ def extraxt_data_to_table_timesheet_from_csv(filepath):
     # query_1 = "DELETE FROM timesheet"
     # execute_query(query_1)
 
-
-    query_2 = "INSERT INTO timesheet VALUES(%s, %s, %s, %s, %s, %s, %s)"
+    with open("../sql/extract_timesheet_data.sql") as sqlFile:
+        query=sqlFile.readlines()
+    query_2 = query[0].replace('\n','')
     
     execute_query(query_2,data)
 
