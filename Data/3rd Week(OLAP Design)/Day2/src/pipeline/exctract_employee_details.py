@@ -35,20 +35,14 @@ def execute_query(query,data=None):
 def extraxt_data_to_table_employee_from_json(filepath):
     """ This is the method to extract data from .json or .xml to database" table employee"""
 
-
     with open(filepath,'r') as file:
         data=json.load(file)
     
-
-    #print(data)
-    
-
     #opening the delete_from_employee_table sql query
     with open("../sql/delete_from_employee_table.sql") as sqlFile:
         query=sqlFile.readlines()
     
     query=query[0].replace('\n','')
-
     execute_query(query)
 
 
@@ -72,25 +66,20 @@ def extract_data_to_table_employee_from_xml(filepath):
     columns = ('employee_id','first_name','last_name','department_id','department_name','manager_employee_id','employee_role','salary','hire_date','terminated_date','terminated_reason','dob','fte','location')
     data=[]
     for i in parser.findall('Employee'):
-       
         values = [i.find(n).text for n in columns]
         data.append(values)
-        #print(values)
-    
+  
     #opening the delete_from_employee_table sql query
     with open("../sql/delete_from_employee_table.sql") as sqlFile:
         query=sqlFile.readlines()
     
     query=query[0].replace('\n','')
-
     execute_query(query)
 
-
-    
     with open("../sql/extract_employee_data.sql") as sqlFile:
         query=sqlFile.readlines()
-    query_2 = query[0].replace('\n','')
     
+    query_2 = query[0].replace('\n','')
     execute_query(query_2,data)
     
 
