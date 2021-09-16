@@ -2,11 +2,11 @@
 
 > ## The file structure of this repo:
 ```
-data/                     # Folder containing the datasets in different formats.
+data/                     # Folder containing the datasets given as assignemt .
   ecommerce.sql
- docs/                    # Folder containing .md files for assignment.      
+ docs/                    # Folder containing .md files for documentation.      
    documentation.md
-schema/                   # Folder containing different create sql quiries.
+schema/                   # Folder containing sql query.
   create_table_sales.sql    
 src/
   pipeline/               # Folder containing python scripts    
