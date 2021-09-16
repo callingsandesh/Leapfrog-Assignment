@@ -1,0 +1,1 @@
+INSERT INTO timesheet VALUES(%s, %s, %s, %s, %s, %s, %s);

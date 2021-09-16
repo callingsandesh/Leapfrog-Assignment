@@ -6,6 +6,7 @@ sys.path.append(abs_filepath)
 #using absolute path 
 from src.utils import connect
 
+from lxml import etree
 
 
 def execute_query(query,data=None): 
@@ -31,27 +32,24 @@ def execute_query(query,data=None):
             conn.close()
 
 
-def extraxt_data_to_table_employee_from_json_or_xml(filepath):
+def extraxt_data_to_table_employee_from_json(filepath):
     """ This is the method to extract data from .json or .xml to database" table employee"""
 
-    #if the file is json
-    if ".json" in filepath:
-        with open(filepath,'r') as file:
-            data=json.load(file)
-
-    #if the file is xml
-    if ".xml" in filepath:
-        with open(filepath,'r') as f:
-            data=f.read()
+    with open(filepath,'r') as file:
+        data=json.load(file)
     
+    #opening the delete_from_employee_table sql query
+    with open("../sql/delete_from_employee_table.sql") as sqlFile:
+        query=sqlFile.readlines()
+    
+    query=query[0].replace('\n','')
+    execute_query(query)
 
-    #quety to remove prevous data if present
-    query_1 = "DELETE FROM employee"
-    execute_query(query_1)
 
-
-    #query to insert the data
-    query_2 = "INSERT INTO employee VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    #opening the extract_employee_data sql query
+    with open("../sql/extract_employee_data.sql") as sqlFile:
+        query=sqlFile.readlines()
+    query_2 = query[0].replace('\n','')
     
     data_all=[]
     for item in data:
@@ -61,7 +59,30 @@ def extraxt_data_to_table_employee_from_json_or_xml(filepath):
         
         data_all.append(row)
     execute_query(query_2,data_all)
+
+
+def extract_data_to_table_employee_from_xml(filepath):
+    parser = etree.parse(filepath)
+    columns = ('employee_id','first_name','last_name','department_id','department_name','manager_employee_id','employee_role','salary','hire_date','terminated_date','terminated_reason','dob','fte','location')
+    data=[]
+    for i in parser.findall('Employee'):
+        values = [i.find(n).text for n in columns]
+        data.append(values)
+  
+    #opening the delete_from_employee_table sql query
+    with open("../sql/delete_from_employee_table.sql") as sqlFile:
+        query=sqlFile.readlines()
     
+    query=query[0].replace('\n','')
+    execute_query(query)
+
+    with open("../sql/extract_employee_data.sql") as sqlFile:
+        query=sqlFile.readlines()
+    
+    query_2 = query[0].replace('\n','')
+    execute_query(query_2,data)
+    
+
 
 def extraxt_data_to_table_timesheet_from_csv(filepath):
     data=[]
@@ -78,8 +99,9 @@ def extraxt_data_to_table_timesheet_from_csv(filepath):
     # query_1 = "DELETE FROM timesheet"
     # execute_query(query_1)
 
-
-    query_2 = "INSERT INTO timesheet VALUES(%s, %s, %s, %s, %s, %s, %s)"
+    with open("../sql/extract_timesheet_data.sql") as sqlFile:
+        query=sqlFile.readlines()
+    query_2 = query[0].replace('\n','')
     
     execute_query(query_2,data)
 
@@ -87,9 +109,9 @@ def extraxt_data_to_table_timesheet_from_csv(filepath):
 
 
 if __name__ == "__main__":
-    extraxt_data_to_table_employee_from_json_or_xml("../../data/employee_2021_08_01.json")
+    extraxt_data_to_table_employee_from_json("../../data/employee_2021_08_01.json")
     
-    extraxt_data_to_table_employee_from_json_or_xml("../../data/employee_2021_08_01.json")
+    extract_data_to_table_employee_from_xml("../../data/employee_2021_08_01.xml")
 
     csv_filepaths=["../../data/timesheet_2021_05_23 - Sheet1.csv","../../data/timesheet_2021_06_23 - Sheet1.csv","../../data/timesheet_2021_07_24 - Sheet1.csv"]
     for filepath in csv_filepaths:
