@@ -80,6 +80,7 @@ GROUP BY agg_main_table.employee_id,agg_main_table.shift_date
   It will create aggregate of difference columns like hours_worked,has_taken_break,break_hour,was_charge,charge_hour,was_on_call,on_call_hour FROM the `main_table`
   
   `SELECT * FROM main_table_agg`
+  
   ![Image](https://github.com/callingsandesh/olap-design/blob/day_4/Day4/docs/SS%20of%20tables/2_main_table_agg.png)
   
   
@@ -93,8 +94,9 @@ group by employee_id,shift_date
   ```
  
  It will create the array of aggregates of shift types from the column by grouping by the employee_id and shift_date
+  `SELECT * FROM agg_shift_table`
   
-  [!Image ](https://github.com/callingsandesh/olap-design/blob/day_4/Day4/docs/SS%20of%20tables/3_array_agg_shift_type.png)
+  ![Image ](https://github.com/callingsandesh/olap-design/blob/day_4/Day4/docs/SS%20of%20tables/3_array_agg_shift_type.png)
   
   
   
@@ -108,6 +110,7 @@ group by employee_id,shift_date
 	FROM main_table
   ```
   `SELECT * FROM attendence_view`
+  
   ![Image](https://github.com/callingsandesh/olap-design/blob/day_4/Day4/docs/SS%20of%20tables/4_attendence_view.png)
   
   
@@ -123,6 +126,7 @@ group by employee_id,shift_date
 		ON e.department_id = d.client_department_id
   ```
   `SELECT * FROM department_view`
+  
   ![Image ](https://github.com/callingsandesh/olap-design/blob/day_4/Day4/docs/SS%20of%20tables/5_department_view.png)
   
   
@@ -142,6 +146,7 @@ group by employee_id,shift_date
 	GROUP BY demo.shift_date,demo.department_id
   ```
   `SELECT * FROM num_teammate_absent`
+  
   ![Image ](https://github.com/callingsandesh/olap-design/blob/day_4/Day4/docs/SS%20of%20tables/6_num_teammates_absent.png)
   
   
@@ -175,6 +180,7 @@ LEFT JOIN num_teammate_absent
 	ON (mt.shift_date,d.department_id) = (num_teammate_absent.shift_date,num_teammate_absent.department_id)
   ```
   `SELECT * FROM semi_final_view`
+  
   ![Image ](https://github.com/callingsandesh/olap-design/blob/day_4/Day4/docs/SS%20of%20tables/7_semi_final_view.png)
   
   
@@ -186,6 +192,7 @@ LEFT JOIN num_teammate_absent
 	GROUP BY employee_id,shift_date
   ```
   `SELECT * FROM array_agg_shift_times`
+  
   ![Image ](https://github.com/callingsandesh/olap-design/blob/day_4/Day4/docs/SS%20of%20tables/8_arr_shift_times.png)
   
     * `schema\9_final_table.sql`
@@ -212,6 +219,9 @@ INNER JOIN array_agg_shift_times ag
 	ON (mt.employee_id,mt.shift_date) = (ag.employee_id,ag.shift_date)
   ```
   `SELECT * FROM final_table`
+  
   ![Image ](https://github.com/callingsandesh/olap-design/blob/day_4/Day4/docs/SS%20of%20tables/9_final_table.png)
+  
+  This is the required final data from the timesheet table.
   
   
