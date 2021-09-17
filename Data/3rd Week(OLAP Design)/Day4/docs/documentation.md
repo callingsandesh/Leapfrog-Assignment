@@ -96,7 +96,8 @@ group by employee_id,shift_date
  It will create the array of aggregates of shift types from the column by grouping by the employee_id and shift_date
   
   `SELECT * FROM agg_shift`
-  [!Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/elt-day4/Data/3rd%20Week(OLAP%20Design)/Day4/docs/SS%20of%20tables/3_array_agg_shift_type.png)
+  
+  ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/elt-day4/Data/3rd%20Week(OLAP%20Design)/Day4/docs/SS%20of%20tables/3_array_agg_shift_type.png)
   
   
   
