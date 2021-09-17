@@ -259,7 +259,7 @@ INNER JOIN array_agg_shift_times ag
 );
   ```
   
-  ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/elt-day4/Data/3rd%20Week(OLAP%20Design)/Day4/docs/SS%20of%20tables/glimpse_of_final_table.png)
+  ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/elt-day4/Data/3rd%20Week(OLAP%20Design)/Day4/docs/SS%20of%20tables/glimpse_of_final_table_1.png)
   This is the required final data from the timesheet table.
   
   
