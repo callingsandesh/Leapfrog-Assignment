@@ -2,9 +2,9 @@ CREATE TABLE timesheet(
     id SERIAL PRIMARY KEY,
     employee_id VARCHAR(255), 
     department_id INTEGER,
-    shift_start_time TIME,
-    shift_end_time TIME,
-    shift_date DATE
+    shift_start_time VARCHAR(50),
+    shift_end_time VARCHAR(50),
+    shift_date VARCHAR(255),
     shift_type VARCHAR(255),
     hours_woked FLOAT,
     attendence VARCHAR(50),

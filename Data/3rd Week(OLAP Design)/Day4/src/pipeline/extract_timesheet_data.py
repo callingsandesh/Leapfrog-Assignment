@@ -32,20 +32,29 @@ def extract_timesheet_data_from_timesheet_raw(filepath):
           for i,ele in enumerate(item):
                if i==2:
                     #print(ele)
+                    flag=0
                     for t in ele:
                          if isinstance(t,datetime.time):
                               row.append(t.strftime("%H:%M"+":00"))
+                              flag+=1
                               break
-                    continue
+                    if flag==1:
+                         continue
+                              
+                      
+                    
                if i==3:
+                    flag=0
                     for t in reversed(ele):
                          if isinstance(t,datetime.time):
                               row.append(t.strftime("%H:%M"+":00"))
+                              flag=1
                               break
-                    continue
+                    if flag==1:
+                         continue
 
                if i==4:
-                    row.append(ele.strftime("%Y-%M-%d"))
+                    row.append(ele.strftime("%Y-%d-%M"))
                     continue 
                if i==5:
                     #print(str(ele))
@@ -55,13 +64,17 @@ def extract_timesheet_data_from_timesheet_raw(filepath):
                     row.append(str(ele))
                     continue
 
-               row.append(ele)
+               row.append(ele[0])
+          #print(row)
           data_cleaned.append(row)
      #print(data_cleaned)
+     # for item in data_cleaned:
+     #      print(len(item))
+     print(len(data_cleaned))
 
      query_1 = """INSERT INTO timesheet(employee_id,department_id,shift_start_time,shift_end_time,
-     shift_type,hours_worked,attendence,has_taken_break,break_hour,was_charge,charge_hour,was_on_call,
-     on_call_hour,num_teammates_absent) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
+     shift_date,shift_type,hours_woked,attendence,has_taken_break,break_hour,was_charge,charge_hour,was_on_call,
+     on_call_hour,num_teammates_absent) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"""
 
      execute_insert_query(query_1 , connect("etl-day4"),data_cleaned)
 
