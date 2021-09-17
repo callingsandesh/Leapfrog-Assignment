@@ -14,8 +14,7 @@ schema/                                 # Folder containing sql query.
     create_table_sales.sql    
 src/
     pipeline/                             # Folder containing python scripts    
-      extract_data_from_ecommerece_dump.py
-      load_data_to_sales_and_sales_archive.py
+      *.py
     helper.py
     utils.py
 ```
