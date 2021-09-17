@@ -1,6 +1,6 @@
 ## Description of the schema present inside the `schema\*.sql`
 
-* `schema\1_main_table.sql`
+> * `schema\1_main_table.sql`
 
 ```
 CREATE OR REPLACE VIEW main_table AS
