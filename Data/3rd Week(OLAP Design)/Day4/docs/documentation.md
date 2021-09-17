@@ -60,7 +60,7 @@ SELECT
   
   
   
-  * `schema\2_main_table_agg.sql`
+  > * `schema\2_main_table_agg.sql`
   ```
   CREATE VIEW main_table_agg AS
 SELECT 
@@ -84,7 +84,7 @@ GROUP BY agg_main_table.employee_id,agg_main_table.shift_date
   ![Image](https://github.com/callingsandesh/Leapfrog-Assignment/blob/elt-day4/Data/3rd%20Week(OLAP%20Design)/Day4/docs/SS%20of%20tables/2_main_table_agg.png)
   
   
-  * `schema\3_array_agg_shift_type.sql`
+  > * `schema\3_array_agg_shift_type.sql`
   
   ```
   CREATE VIEW agg_shift AS
@@ -101,7 +101,7 @@ group by employee_id,shift_date
   
   
   
-  * `schema\4_attendence_view.sql`
+  > * `schema\4_attendence_view.sql`
   
   ```
   CREATE OR REPLACE VIEW attendence_view AS 
@@ -116,7 +116,7 @@ group by employee_id,shift_date
   
   
   
-  * `schema\5_department_view.sql`
+  > * `schema\5_department_view.sql`
   ```
   CREATE VIEW department_view AS
 	SELECT attendence_view.employee_id,attendence_view.shift_date,attendence_view.attendence,d.id as department_id
@@ -132,7 +132,7 @@ group by employee_id,shift_date
   
   
   
-  * `schema\6_num_teammates_absent.sql`
+  > * `schema\6_num_teammates_absent.sql`
   ```CREATE VIEW num_teammate_absent AS
 	SELECT 
 	demo.shift_date,demo.department_id,COUNT(*)-SUM(attendence) AS num_teammates_absent
@@ -154,7 +154,7 @@ group by employee_id,shift_date
 
   
   
-  * `schema\7_semi_final_view.sql`
+  > * `schema\7_semi_final_view.sql`
   ```
   CREATE VIEW semi_final_table AS
   SELECT 
@@ -185,7 +185,7 @@ LEFT JOIN num_teammate_absent
   ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/elt-day4/Data/3rd%20Week(OLAP%20Design)/Day4/docs/SS%20of%20tables/7_semi_final_view.png)
   
   
-  * `schema\8_array_agg_shift_times.sql`
+  > * `schema\8_array_agg_shift_times.sql`
   ```
   CREATE VIEW array_agg_shift_times AS
 	SELECT employee_id,shift_date,array_agg(shift_start_time) AS shift_start_time,array_agg(shift_end_time) AS 	   shift_end_time
@@ -196,7 +196,7 @@ LEFT JOIN num_teammate_absent
   
   ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/elt-day4/Data/3rd%20Week(OLAP%20Design)/Day4/docs/SS%20of%20tables/8_arr_shift_times.png)
   
-    * `schema\9_final_table.sql`
+ > * `schema\9_final_table.sql`
   ```
 CREATE VIEW final_table AS
 SELECT 
