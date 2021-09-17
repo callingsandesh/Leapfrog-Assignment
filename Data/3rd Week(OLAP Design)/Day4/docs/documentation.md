@@ -234,6 +234,7 @@ CREATE TABLE timesheet(
     department_id INTEGER,
     shift_start_time TIME,
     shift_end_time TIME,
+    shift_date DATE,
     shift_type VARCHAR(255),
     hours_woked FLOAT,
     attendence VARCHAR(50),
