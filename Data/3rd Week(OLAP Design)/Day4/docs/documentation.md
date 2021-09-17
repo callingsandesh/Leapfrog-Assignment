@@ -222,3 +222,41 @@ INNER JOIN array_agg_shift_times ag
   `SELECT * FROM final_table`
   
   ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/elt-day4/Data/3rd%20Week(OLAP%20Design)/Day4/docs/SS%20of%20tables/9_final_table.png)
+
+
+After the final view table is created , I executed the select query to fetch the necessary data.
+After that i did some preprocessing with the `shift_start_time` and `shift_end_time` to get the minimum `shift_start_time` and maximum `shift_end_time` and finally pushed the data into the new created table as below.
+
+```
+CREATE TABLE timesheet(
+    id SERIAL PRIMARY KEY,
+    employee_id VARCHAR(255), 
+    department_id INTEGER,
+    shift_start_time TIME,
+    shift_end_time TIME,
+    shift_type VARCHAR(255),
+    hours_woked FLOAT,
+    attendence VARCHAR(50),
+    has_taken_break BOOLEAN,
+    break_hour FLOAT,
+    was_charge BOOLEAN,
+    charge_hour FLOAT,
+    was_on_call BOOLEAN,
+    on_call_hour FLOAT,
+    num_teammates_absent SMALLINT,
+
+    CONSTRAINT fk_timesheet_department_department_id
+    FOREIGN KEY(department_id) REFERENCES department(id)
+
+);
+```
+Before inserting the timesheet data , I made the department table and inserted the unique department and give a unique id to the department.
+
+```
+CREATE TABLE department(
+    id SERIAL PRIMARY KEY,
+    client_department_id VARCHAR(255),
+    department_name VARCHAR(255)
+
+);
+```
