@@ -8,7 +8,6 @@ data/                                   # Folder containing the datasets given a
     *.csv
  docs/                                  # Folder containing .md files for documentation.      
     documentation.md
-    *.png
     SS_of_Tables                        # Folder containing .png file
       *.png
 schema/                                 # Folder containing sql query.
@@ -21,8 +20,6 @@ src/
 ```
 
 
-# Proposed ER MODEL
 
-![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-Day5/Data/3rd%20Week(OLAP%20Design)/Day5/docs/warehouse(employee%20and%20timesheet).png )
 
 
