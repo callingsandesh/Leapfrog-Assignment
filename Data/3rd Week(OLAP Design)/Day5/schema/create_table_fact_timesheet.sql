@@ -8,7 +8,6 @@ CREATE TABLE fact_timesheet(
     punch_out_time DATE,
     time_period_id INTEGER,
     attendence BOOLEAN,
-    work_code VARCHAR(255),
     has_taken_break BOOLEAN,
     break_hour FLOAT,
     was_charge BOOLEAN,
