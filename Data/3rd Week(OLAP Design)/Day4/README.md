@@ -8,10 +8,11 @@ data/                                   # Folder containing the datasets given a
     *.csv
  docs/                                  # Folder containing .md files for documentation.      
     documentation.md
+    *.png
     SS_of_Tables                        # Folder containing .png file
       *.png
 schema/                                 # Folder containing sql query.
-    create_table_sales.sql    
+    *.sql    
 src/
     pipeline/                             # Folder containing python scripts    
       *.py
@@ -20,6 +21,8 @@ src/
 ```
 
 
-# Final glimpse of the table after all preprocessing
-![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/elt-day4/Data/3rd%20Week(OLAP%20Design)/Day4/docs/SS%20of%20tables/glimpse_of_final_table_1.png)
-  This is the required final data from the timesheet table.
+# Proposed ER MODEL
+
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-Day5/Data/3rd%20Week(OLAP%20Design)/Day5/docs/warehouse(employee%20and%20timesheet).png )
+
+
