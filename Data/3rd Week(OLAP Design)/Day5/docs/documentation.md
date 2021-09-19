@@ -1,5 +1,5 @@
-#Proposed ER model of the warehouse
-![Image](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-Day5/Data/3rd%20Week(OLAP%20Design)/Day5/docs/warehouse(employee%20and%20timesheet).png )
+# Proposed ER model of the warehouse
+![Image](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-Day5/Data/3rd%20Week(OLAP%20Design)/Day5/docs/warehouse(employee%20and%20timesheet)_1.png )
 
 #  I will describe all the  table creation and respective code to insert the data into the table.
 > `schema\create_table_dim_department.sql
