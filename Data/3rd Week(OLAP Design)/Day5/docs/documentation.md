@@ -12,7 +12,11 @@ CREATE TABLE dim_department(
 );
 ```
 Used the following query to insert the data from the dump database.
-``
+```
+INSERT INTO dim_department(client_department_id,department_name)
+SELECT DISTINCT department_id,department_name
+FROM employee
+```
 
 > `schema\create_table_dim_manager.sql`
 ```
@@ -26,7 +30,13 @@ CREATE TABLE dim_manager(
 );
 ```
 Used the following query to insert the data from the dump database.
-``
+```
+INSERT INTO dim_manager(client_employee_id,first_name,last_name,salary)
+SELECT DISTINCT mgr.employee_id,mgr.first_name,mgr.last_name,mgr.salary
+FROM employee e
+JOIN employee mgr
+	ON e.manager_employee_id = mgr.employee_id
+```
 
 > `schema\create_table_dim_period.sql`
 ```
@@ -37,9 +47,8 @@ CREATE TABLE dim_period (
 )
 ```
 Used the following query to insert the data from the dump database.
-`INSERT INTO dim_department(client_department_id,department_name)
-SELECT DISTINCT department_id,department_name
-FROM employee`
+```
+```
 
 > `schema\create_table_dim_role.sql`
 ```
@@ -49,7 +58,10 @@ CREATE TABLE dim_role (
 );
 ```
 Used the following query to insert the data from the dump database.
-``
+```
+INSERT INTO dim_role(name) 
+SELECT DISTINCT employee_role FROM employee
+```
 
 > `schema\create_table_dim_shift_type.sql`
 ```
@@ -59,7 +71,11 @@ CREATE TABLE dim_shift_type(
 )
 ```
 Used the following query to insert the data from the dump database.
-``
+```
+INSERT INTO dim_shift_type(name)
+SELECT DISTINCT shift_type
+FROM timesheet_warehouse t
+```
 
 > `schema\create_table_dim_status.sql`
 ```
@@ -69,7 +85,14 @@ CREATE TABLE dim_status (
 );
 ```
 Used the following query to insert the data from the dump database.
-``
+```
+INSERT INTO dim_status(name)
+SELECT 
+ DISTINCT CASE WHEN terminated_date='01-01-1700' THEN 'active'
+	      ELSE 'terminated'
+	      END as active_statue
+FROM employee
+```
 
 > `schema\create_table_fact_employee.sql`
 ```
@@ -91,7 +114,36 @@ CREATE TABLE fact_employee(
 );
 ```
 Used the following query to insert the data from the dump database.
-``
+```
+
+INSERT INTO fact_employee(client_employee_id,first_name,last_name,department_id,manager_id,salary,hire_date,term_date,term_reason,dob,role_id,active_status_id,weekly_hours)
+SELECT
+	e.employee_id,
+	e.first_name,
+	e.last_name,
+	d.id as department_id,
+	mgr.id as manager_id,
+	e.salary,
+	e.hire_date,
+	CASE WHEN e.terminated_date = '01-01-1700' THEN NULL
+		 ELSE e.terminated_date
+		 END as term_date,
+	
+	e.terminated_reason as term_reason,
+	e.dob,
+	r.role_id as role_id,
+	CASE WHEN e.terminated_date = '01-01-1700' THEN 1
+		 ELSE 2
+		 END as active_status_id,
+	CAST(fte AS FLOAT)*40 AS weekly_hours
+FROM employee e
+INNER JOIN dim_role r
+	ON e.employee_role = r.name
+INNER JOIN dim_department d
+	ON e.department_id = d.client_department_id
+LEFT JOIN dim_manager mgr
+	ON e.manager_employee_id = mgr.client_employee_id
+```
 
 > `schema\create_table_fact_timesheet.sql`
 ```
@@ -118,5 +170,32 @@ CREATE TABLE fact_employee(
 )
 ```
 Used the following query to insert the data from the dump database.
-``
+```
+SELECT 
+	e.employee_id,
+	e.shift_date as work_date,
+	e.department_id,
+	CASE WHEN e.attendence='0' THEN 0
+		 ELSE e.hours_woked
+		 END as hours_worked,
+	CASE WHEN e.shift_type = NULL THEN 1
+		 WHEN e.shift_type ='Morning' THEN 2
+		 ELSE 3
+		 END as shift_type_id,
+	CASE WHEN e.shift_start_time = '[None]' THEN NULL
+		 ELSE TO_TIMESTAMP(e.shift_start_time,'HH24:MI:SS')
+		 END as punch_in_time,
+	CASE WHEN e.shift_end_time = '[None]' THEN NULL
+		 ELSE TO_TIMESTAMP(e.shift_end_time,'HH24:MI:SS')
+		 END as punch_out_time,
+	e.attendence,
+	e.has_taken_break,
+	e.break_hour,
+	e.was_charge,
+	e.was_on_call,
+	e.on_call_hour as on_call_hours,
+	e.num_teammates_absent
+
+FROM timesheet_warehouse e
+```
 
