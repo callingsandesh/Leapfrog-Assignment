@@ -1,7 +1,7 @@
 #Proposed ER model of the warehouse
 ![Image](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-Day5/Data/3rd%20Week(OLAP%20Design)/Day5/docs/warehouse(employee%20and%20timesheet).png )
 
-#  I will describe all the table table creation and respective code to insert the data into the table.
+#  I will describe all the  table creation and respective code to insert the data into the table.
 > `schema\create_table_dim_department.sql
 ```
 CREATE TABLE dim_department(
@@ -169,13 +169,14 @@ CREATE TABLE fact_timesheet(
 
 )
 ```
-Used the following query to insert the data from the dump database.
-```
+
+
 I have already made the timesheet_warehouse from previous day,which i will use to fetch the necessary data after and insert into the fact_timesheet after some procession.
 
 ### A glimpse of timesheet_warehouse table.
-![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-Day5/Data/3rd%20Week(OLAP%20Design)/Day5/docs/timesheet_warehouse.png )
 
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-Day5/Data/3rd%20Week(OLAP%20Design)/Day5/docs/timesheet_warehouse.png )
+```
 INSERT INTO fact_timesheet(employee_id,work_date,department_id,hours_worked,shift_type_id,punch_in_time,punch_out_time,attendence,has_taken_break,break_hour,was_charge,charge_hour,was_on_call,on_call_hours,is_weekend,num_teammates_absent)
 SELECT 
 	e.employee_id,
