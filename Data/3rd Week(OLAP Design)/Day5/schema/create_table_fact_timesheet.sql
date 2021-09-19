@@ -1,4 +1,4 @@
-CREATE TABLE fact_employee(
+CREATE TABLE fact_timesheet(
     employee_id INTEGER,
     work_date DATE,
     department_id VARCHAR(255),
