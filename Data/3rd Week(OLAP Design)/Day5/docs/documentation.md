@@ -147,7 +147,7 @@ LEFT JOIN dim_manager mgr
 
 > `schema\create_table_fact_timesheet.sql`
 ```
-CREATE TABLE fact_employee(
+CREATE TABLE fact_timesheet(
     employee_id INTEGER,
     work_date DATE,
     department_id VARCHAR(255),
@@ -171,6 +171,12 @@ CREATE TABLE fact_employee(
 ```
 Used the following query to insert the data from the dump database.
 ```
+I have already made the timesheet_warehouse from previous day,which i will use to fetch the necessary data after and insert into the fact_timesheet after some procession.
+
+### A glimpse of timesheet_warehouse table.
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-Day5/Data/3rd%20Week(OLAP%20Design)/Day5/docs/timesheet_warehouse.png )
+
+INSERT INTO fact_timesheet(employee_id,work_date,department_id,hours_worked,shift_type_id,punch_in_time,punch_out_time,attendence,has_taken_break,break_hour,was_charge,charge_hour,was_on_call,on_call_hours,is_weekend,num_teammates_absent)
 SELECT 
 	e.employee_id,
 	e.shift_date as work_date,
@@ -192,10 +198,10 @@ SELECT
 	e.has_taken_break,
 	e.break_hour,
 	e.was_charge,
+	e.charge_hour,
 	e.was_on_call,
 	e.on_call_hour as on_call_hours,
 	e.num_teammates_absent
 
 FROM timesheet_warehouse e
 ```
-
