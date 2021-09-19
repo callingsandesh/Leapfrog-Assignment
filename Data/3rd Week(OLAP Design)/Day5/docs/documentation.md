@@ -157,7 +157,6 @@ CREATE TABLE fact_timesheet(
     punch_out_time DATE,
     time_period_id INTEGER,
     attendence BOOLEAN,
-    work_code VARCHAR(255),
     has_taken_break BOOLEAN,
     break_hour FLOAT,
     was_charge BOOLEAN,
@@ -202,6 +201,7 @@ SELECT
 	e.charge_hour,
 	e.was_on_call,
 	e.on_call_hour as on_call_hours,
+	extract('week' from current_date) as week;
 	e.num_teammates_absent
 
 FROM timesheet_warehouse e
