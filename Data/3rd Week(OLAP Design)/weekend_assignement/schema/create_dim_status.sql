@@ -1,0 +1,4 @@
+CREATE TABLE dim_status(
+ id SERIAL PRIMARY KEY,
+ type VARCHAR(255)
+);
