@@ -282,9 +282,10 @@ INNER JOIN dim_status
 ```
 I used the `pipeline\extract_data_into_product_dim_and_fact.py` pipeline to populated the data from the dump table created above.
 
-`SELECT * FROM fact_product LIMIT 20`
+`SELECT * FROM fact_product LIMIT 20
+
 ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/2_fact_product.png)
-					_Fig: ER DIAGRAM OF THE WAREHOUSE
+				
 ### After all the facts and dimention table of product was created , I made the `fact_sales_product` using the following query
 > `schema\create_fact_sales_product.sql`
 
@@ -396,7 +397,7 @@ LIMIT 30
 
 ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/5_product_not_sold_yet.png)
 
-Almost 534 producs are their which the company is not been able to see.So now the company has to re-thing about the product to keep .
+Almost 534 producs are their which the company is not been able to sale.So now the company has to re-thing about the product to keep .
 
 
 > TOTAL SALES BY BRAND
