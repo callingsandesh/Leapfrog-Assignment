@@ -546,6 +546,8 @@ GROUP BY dim_customer.town
 ORDER BY total_sales DESC
 ```
 ![Image](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/8_total_saled_by_location.png)
+
+![Image](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/Total%20Sale%20by%20town.png )
  
 
 
