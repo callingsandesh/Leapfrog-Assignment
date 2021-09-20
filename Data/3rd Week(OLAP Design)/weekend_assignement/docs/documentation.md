@@ -284,7 +284,7 @@ I used the `pipeline\extract_data_into_product_dim_and_fact.py` pipeline to popu
 
 `SELECT * FROM fact_product LIMIT 20`
 ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/2_fact_product.png)
-
+					_Fig: ER DIAGRAM OF THE WAREHOUSE
 ### After all the facts and dimention table of product was created , I made the `fact_sales_product` using the following query
 > `schema\create_fact_sales_product.sql`
 
