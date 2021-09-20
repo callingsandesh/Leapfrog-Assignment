@@ -1,0 +1,1 @@
+INSERT INTO dim_customer VALUES(%s,%s,%s,%s,%s,%s,%s);

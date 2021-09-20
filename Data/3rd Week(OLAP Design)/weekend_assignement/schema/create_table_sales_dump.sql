@@ -1,0 +1,22 @@
+CREATE TABLE sales_dump(
+	id INTEGER PRIMARY KEY,
+	transaction_id VARCHAR(255),
+	bill_no VARCHAR(255),
+	bill_date VARCHAR(255),
+	bill_location VARCHAR(255),
+	customer_id INTEGER,
+	product_id INTEGER,
+	qty VARCHAR(255),
+	uom VARCHAR(255),
+	price VARCHAR(255),
+	gross_price VARCHAR(255),
+	tax_pc VARCHAR(255),
+	tax_amount VARCHAR(255),
+	discount_pc VARCHAR(255),
+	discount_amt VARCHAR(255),
+	net_bill_amt VARCHAR(255),
+	created_by VARCHAR(255),
+	updated_by VARCHAR(255),
+	created_date VARCHAR(255),
+	updated_date VARCHAR(255)
+);

@@ -1,0 +1,4 @@
+CREATE TABLE dim_uom(
+    id SERIAL PRIMARY KEY,
+    type VARCHAR(255)
+);
