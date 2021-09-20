@@ -19,5 +19,5 @@ src/
     utils.py
 ```
 
-#Proposed ER diagram
+# Proposed ER diagram
 ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-Day5/Data/3rd%20Week(OLAP%20Design)/Day5/docs/warehouse(employee%20and%20timesheet)_1.png )
