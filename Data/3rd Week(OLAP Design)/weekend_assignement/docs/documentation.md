@@ -1,10 +1,10 @@
-# Requirement identification
+### Requirement identification
 - To find out the trends among the customers.
 - To analyze their sales to invest more on product that are selling fast.
 - To analyze their sales to invest more on product that are producing high profits.
 - To analyze the sales to remove the potential products that are not doing so good.
 
-# Potential area of analysis
+### Potential area of analysis
 - products
 - sales
 - customer
@@ -12,7 +12,7 @@
 - product brand
 - product categoty
 
-# The list of entities proposed are:
+### The list of entities and theri attributes proposed are:
 1. dim_uom
 	* id
 	* type
@@ -84,13 +84,13 @@
 	* updated_date
 
  
-## Proposed ER diagram of the warehouse
+### Proposed ER diagram of the warehouse
 
 ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/1_ER.png )
 
 After the logical modelling was purposed , I went to the physical implementation of it.
 
-## Firstly I created different tables to dump the flat files datas.
+### Firstly I created different tables to dump the flat files datas.
 
 >`schema\create_table_customer_dump.sql`
 
