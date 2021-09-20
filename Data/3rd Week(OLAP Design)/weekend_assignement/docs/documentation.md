@@ -375,6 +375,8 @@ INNER JOIN dim_category c
 
 From here we can know only 19 product has been sold during this time.
 
+![Image](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/Product%20and%20Their%20total%20sales.png)
+
 > 30 PRODUCTS THAT ARE NOT SOLD YET
 ```
 SELECT 
@@ -397,6 +399,7 @@ LIMIT 30
 
 ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/5_product_not_sold_yet.png)
 
+
 Almost 534 producs are their which the company is not been able to sale.So now the company has to re-thing about the product to keep .
 
 
@@ -418,6 +421,7 @@ GROUP BY brand_name
 ORDER BY total_sales DESC
 ```
 ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/6_total_sales_by_brand.png )
+![Image](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/Total%20Sale%20by%20Brand.png)
 
 ###TOTAL SALES BY CATEGORY
 ```
@@ -437,6 +441,7 @@ ORDER BY total_sales DESC
 ```
 ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/7_total_sales_by_category.png )
 
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/Total%20Sale%20by%20Category.png )
 
 ### After that i thought of extraxting some customer trend , like sells on the basis of location,loyal customers.
 
