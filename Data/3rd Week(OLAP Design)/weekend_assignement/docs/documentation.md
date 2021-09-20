@@ -86,7 +86,7 @@
  
 ## Proposed ER diagram of the warehouse
 
-![Image ]()
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/1_ER.png )
 
 After the logical modelling was purposed , I went to the physical implementation of it.
 
@@ -283,7 +283,7 @@ INNER JOIN dim_status
 I used the `pipeline\extract_data_into_product_dim_and_fact.py` pipeline to populated the data from the dump table created above.
 
 `SELECT * FROM fact_product LIMIT 20`
-![Image ]()
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/2_fact_product.png)
 
 ### After all the facts and dimention table of product was created , I made the `fact_sales_product` using the following query
 > `schema\create_fact_sales_product.sql`
@@ -347,7 +347,7 @@ ORDER BY date
 ```
 `SELECT * FROM date_product_id_total_bill  LIMIT 20`
 
-![Image ]()
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/3_product_sales_on_each_day_basis.png)
 
 
 > TOTAL SALES OF EACH PRODUCTS
@@ -370,7 +370,9 @@ INNER JOIN dim_category c
 	ON p.category_id = c.id
 ```
 
-![Image ]()
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/4_total_sold_products.png )
+
+From here we can know only 19 product has been sold during this time.
 
 > 30 PRODUCTS THAT ARE NOT SOLD YET
 ```
@@ -392,8 +394,9 @@ WHERE e.product_id IS NULL
 LIMIT 30
 ```
 
-![Image ]()
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/5_product_not_sold_yet.png)
 
+Almost 534 producs are their which the company is not been able to see.So now the company has to re-thing about the product to keep .
 
 
 > TOTAL SALES BY BRAND
@@ -413,7 +416,7 @@ INNER JOIN dim_brand b
 GROUP BY brand_name
 ORDER BY total_sales DESC
 ```
-![Image ] ()
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/6_total_sales_by_brand.png )
 
 ###TOTAL SALES BY CATEGORY
 ```
@@ -431,7 +434,7 @@ INNER JOIN dim_category c
 GROUP BY category
 ORDER BY total_sales DESC
 ```
-![Image ]()
+![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/7_total_sales_by_category.png )
 
 
 ### After that i thought of extraxting some customer trend , like sells on the basis of location,loyal customers.
@@ -541,7 +544,7 @@ INNER JOIN dim_customer
 GROUP BY dim_customer.town
 ORDER BY total_sales DESC
 ```
-![Image ] ()
+![Image](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/8_total_saled_by_location.png)
  
 
 
