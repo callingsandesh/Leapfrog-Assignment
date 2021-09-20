@@ -423,7 +423,7 @@ ORDER BY total_sales DESC
 ![Image ](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/6_total_sales_by_brand.png )
 ![Image](https://github.com/callingsandesh/Leapfrog-Assignment/blob/ETL-weekend/Data/3rd%20Week(OLAP%20Design)/weekend_assignement/docs/ss/Total%20Sale%20by%20Brand.png)
 
-###TOTAL SALES BY CATEGORY
+> TOTAL SALES BY CATEGORY
 ```
 SELECT 
 	ROUND(AVG(e.avg_price)::NUMERIC,2) AS avg_price ,
