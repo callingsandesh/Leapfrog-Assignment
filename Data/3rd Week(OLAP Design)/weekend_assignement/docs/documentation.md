@@ -12,7 +12,7 @@
 - product brand
 - product categoty
 
-### The list of entities and theri attributes proposed are:
+### The list of entities and their attributes proposed are:
 1. dim_uom
 	* id
 	* type
