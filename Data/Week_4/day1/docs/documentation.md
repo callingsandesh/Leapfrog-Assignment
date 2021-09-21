@@ -6,7 +6,7 @@ I have used the pipeline inside `src\pipelne\extract_csv_files_into_database_tab
 > Check if a single employee is listed twice with multiple ids.
 
 ```
---Here I assume that the client has difference full_names,hire_date and dob
+--Here I assume that the client has different full_names,hire_date and dob
 SELECT
 	CASE
 		WHEN S.TOTAL_NAMES = 1 THEN 'PASS'
@@ -33,6 +33,11 @@ FROM
 GROUP BY
 	TOTAL_RESULT
 ```
+|total_result|count|
+|------------|-----|
+|PASS|30|
+
+
 
 > Check if part time employees are assigned other fte_status.
 
