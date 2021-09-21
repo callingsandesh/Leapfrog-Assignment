@@ -18,9 +18,13 @@ src/
 ```
 
 ### Assignement Questions
+
 > Create tables in database and populate the tables using the given datasets.
+
 Please keep the name of the table and sheet name of dataset same (e.g. customer).
+
 > Write test scripts for the following test cases
+
 1. Check if a single employee is listed twice with multiple ids.
 2. Check if part time employees are assigned other fte_status.
 3. Check if termed employees are marked as active.
