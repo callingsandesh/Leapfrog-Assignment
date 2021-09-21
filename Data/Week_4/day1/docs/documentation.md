@@ -3,7 +3,7 @@ The datas are inside the `data\*.csv`.
 I have used the pipeline inside `src\pipelne\extract_csv_files_into_database_tables.py`to populate the date inside the tables created, with the help of function inside `utils.py` and `helper.py`.
 
 ### The test script of the given test cases are:
-> Check if a single employee is listed twice with multiple ids.
+### Check if a single employee is listed twice with multiple ids.
 
 ```
 --Here I assume that the client has different full_names,hire_date and dob
@@ -39,7 +39,7 @@ GROUP BY
 
 
 
-> Check if part time employees are assigned other fte_status.
+### Check if part time employees are assigned other fte_status.
 
 ```
 with cte_status as (SELECT CASE WHEN fte=1 THEN 'Full Time' 
@@ -61,7 +61,7 @@ group by c
 
 
 
-> Check if termed employees are marked as active.
+### Check if termed employees are marked as active.
 
 ```
 with cte_term_status AS(
@@ -84,7 +84,7 @@ group by label
 
 
 
-> Check if the same product is listed more than once in a single bill.
+### Check if the same product is listed more than once in a single bill.
 
 
 ```
@@ -105,7 +105,7 @@ group by result
 
 
 
-> Check if the customer_id in the sales table does not exist in the customer table.
+### Check if the customer_id in the sales table does not exist in the customer table.
 ```
 select COUNT(*) as impacted_record_count,
 		case when COUNT(*)>0 THEN 'Failed'
@@ -124,7 +124,7 @@ select customer_id from customer
 
 
 
-> Check if there are any records where updated_by is not empty but updated_date is empty.
+### Check if there are any records where updated_by is not empty but updated_date is empty.
 
 
 ```
@@ -140,7 +140,7 @@ where updated_by !=''  and updated_date is null
 ```
 
 
-> Check if there are any hours worked that are greater than 24 hours.
+### Check if there are any hours worked that are greater than 24 hours.
 
 
 ```
@@ -158,7 +158,7 @@ where hours_worked>24
 
 
 
-> Check if non on-call employees are set as on-call.
+### Check if non on-call employees are set as on-call.
 
 
 ```
@@ -182,7 +182,7 @@ and t.was_on_call =true
 
 
 
-> Check if the break is true for employees who have not taken a break at all.
+### Check if the break is true for employees who have not taken a break at all.
 
 ```
 select 
@@ -205,7 +205,7 @@ and t.has_taken_break =true
 
 
 
-> Check if the night shift is not assigned to the employees working on the night shift.
+### Check if the night shift is not assigned to the employees working on the night shift.
 
 ```
 ```
