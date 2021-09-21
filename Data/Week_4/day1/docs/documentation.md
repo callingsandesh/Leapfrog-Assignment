@@ -42,16 +42,26 @@ GROUP BY
 ### Check if part time employees are assigned other fte_status.
 
 ```
-with cte_status as (SELECT CASE WHEN fte=1 THEN 'Full Time' 
-		   ELSE 'Part Time'
-		   END AS term_status,
+with cte_status as (
+select
+	case
+		when fte = 1 then 'Full Time'
+		else 'Part Time'
+	end as term_status,
 		   fte_status
-		   FROM employee
-) select case when term_status=fte_status then 'correct'
-		 else 'part_time_employees_assigned_as full time'
-		 end as c,COUNT(*)
-from cte_status
-group by c
+from
+	employee
+)
+select
+	case
+		when term_status = fte_status then 'correct'
+		else 'part_time_employees_assigned_as full time'
+	end as c,
+	COUNT(*)
+from
+	cte_status
+group by
+	c
 ```
 |c|count|
 |-|-----|
@@ -64,19 +74,26 @@ group by c
 ### Check if termed employees are marked as active.
 
 ```
-with cte_term_status AS(
-	SELECT CASE WHEN TERM_DATE='' THEN TRUE 
-		   ELSE FALSE
-		   END AS term_status,
+with cte_term_status as(
+select
+	case
+		when TERM_DATE = '' then true
+		else false
+	end as term_status,
 		   is_active
-		 from employee
+from
+	employee
 )
-select case when term_status = is_active then 'CORRECT'
+select
+	case
+		when term_status = is_active then 'CORRECT'
 		else 'INCORRECT'
-		end as label,
+	end as label,
 		COUNT(*)
-from cte_term_status
-group by label
+from
+	cte_term_status
+group by
+	label
 ```
 |label|count|
 |-----|-----|
@@ -88,16 +105,26 @@ group by label
 
 
 ```
-select case when c.product_listed_in_bill = 1 then 'PASS'
-	   else 'FAIL'
-	   end as result,
-COUNT(*)
-FROM(
-select bill_no,product_id,COUNT(*) as product_listed_in_bill
-from SALES   
-group by bill_no,product_id
+select
+	case
+		when c.product_listed_in_bill = 1 then 'PASS'
+		else 'FAIL'
+	end as result,
+	COUNT(*)
+from
+	(
+	select
+		bill_no,
+		product_id,
+		COUNT(*) as product_listed_in_bill
+	from
+		SALES
+	group by
+		bill_no,
+		product_id
 ) as c
-group by result
+group by
+	result
 ```
 |result|count|
 |------|-----|
@@ -107,14 +134,23 @@ group by result
 
 ### Check if the customer_id in the sales table does not exist in the customer table.
 ```
-select COUNT(*) as impacted_record_count,
-		case when COUNT(*)>0 THEN 'Failed'
+select
+	COUNT(*) as impacted_record_count,
+		case
+		when COUNT(*)>0 then 'Failed'
 		else 'Passed'
-		end as test_status
-FROM(
-select distinct customer_id from sales s 
-except 
-select customer_id from customer
+	end as test_status
+from
+	(
+	select
+		distinct customer_id
+	from
+		sales s
+except
+	select
+		customer_id
+	from
+		customer
 )as result;
 ```
 |impacted_record_count|test_status|
@@ -128,10 +164,18 @@ select customer_id from customer
 
 
 ```
-select COUNT(*) as Failed
-FROM(
-select updated_by,updated_date from SALES
-where updated_by !=''  and updated_date is null
+select
+	COUNT(*) as Failed
+from
+	(
+	select
+		updated_by,
+		updated_date
+	from
+		SALES
+	where
+		updated_by != ''
+		and updated_date is null
 ) R
 ```
 |failed|
@@ -144,10 +188,16 @@ where updated_by !=''  and updated_date is null
 
 
 ```
-select count(*) as Total_count_more_than_24hr_work
-FROM(
-select * from timesheet
-where hours_worked>24
+select
+	count(*) as Total_count_more_than_24hr_work
+from
+	(
+	select
+		*
+	from
+		timesheet
+	where
+		hours_worked>24
 ) as result;
 
 ```
@@ -162,17 +212,20 @@ where hours_worked>24
 
 
 ```
-select 
-COUNT(*) as impacted_record_count,
-case when COUNT(*)>0 THEN 'failed'
-	else 'passed'
+select
+	COUNT(*) as impacted_record_count,
+	case
+		when COUNT(*)>0 then 'failed'
+		else 'passed'
 	end as test_status
-from timesheet t  
+from
+	timesheet t
 inner join timesheet_raw tr 
-on t.employee_id =tr.employee_id 
-and t.shift_date =tr.punch_apply_time
-and tr.paycode !='ON_CALL'
-and t.was_on_call =true
+on
+	t.employee_id = tr.employee_id
+	and t.shift_date = tr.punch_apply_time
+	and tr.paycode != 'ON_CALL'
+	and t.was_on_call = true
 ```
 |impacted_record_count|test_status|
 |---------------------|-----------|
@@ -185,17 +238,20 @@ and t.was_on_call =true
 ### Check if the break is true for employees who have not taken a break at all.
 
 ```
-select 
-COUNT(*) as impacted_record_count,
-case when COUNT(*)>0 THEN 'failed'
-	else 'passed'
+select
+	COUNT(*) as impacted_record_count,
+	case
+		when COUNT(*)>0 then 'failed'
+		else 'passed'
 	end as test_status
-from timesheet t  
+from
+	timesheet t
 inner join timesheet_raw tr 
-on t.employee_id =tr.employee_id 
-and t.shift_date =tr.punch_apply_time
-and tr.paycode !='BREAK'
-and t.has_taken_break =true
+on
+	t.employee_id = tr.employee_id
+	and t.shift_date = tr.punch_apply_time
+	and tr.paycode != 'BREAK'
+	and t.has_taken_break = true
 ```
 |impacted_record_count|test_status|
 |---------------------|-----------|
