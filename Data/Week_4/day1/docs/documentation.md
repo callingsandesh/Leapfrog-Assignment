@@ -59,6 +59,8 @@ group by c
 |correct|24|
 
 
+
+
 > Check if termed employees are marked as active.
 
 ```
@@ -131,7 +133,7 @@ FROM(
 select updated_by,updated_date from SALES
 where updated_by !=''  and updated_date is null
 ) R
-
+```
 |failed|
 |------|
 |57|
@@ -152,6 +154,8 @@ where hours_worked>24
 |total_count_more_than_24hr_work|
 |-------------------------------|
 |0|
+
+
 
 
 > Check if non on-call employees are set as on-call.
@@ -175,6 +179,9 @@ and t.was_on_call =true
 |176|failed|
 
 
+
+
+
 > Check if the break is true for employees who have not taken a break at all.
 
 ```
@@ -193,6 +200,9 @@ and t.has_taken_break =true
 |impacted_record_count|test_status|
 |---------------------|-----------|
 |523|failed|
+
+
+
 
 
 > Check if the night shift is not assigned to the employees working on the night shift.
