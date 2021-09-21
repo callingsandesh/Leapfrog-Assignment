@@ -42,60 +42,44 @@ GROUP BY
 > Check if part time employees are assigned other fte_status.
 
 ```
-SELECT COUNT(*) AS IMPACTED_RECORD_COUNT,
-	CASE 
-		WHEN COUNT(*)>0 THEN 'FAILED'
-		ELSE 'PASSED'
-		END AS TEST_RESULT
-FROM((
-
-	SELECT CASE WHEN fte=1 THEN 'Full Time' 
+with cte_status as (SELECT CASE WHEN fte=1 THEN 'Full Time' 
 		   ELSE 'Part Time'
-		   END AS TERM_STATUS
-FROM EMPLOYEE
-UNION
-SELECT fte_status FROM EMPLOYEE)
-EXCEPT(
-SELECT fte_status FROM EMPLOYEE
-INTERSECT
-SELECT CASE WHEN fte=1 THEN 'Full Time' 
-		   ELSE 'Part Time'
-		   END AS TERM_STATUS
-FROM EMPLOYEE
-)
-)RESULT;
+		   END AS term_status,
+		   fte_status
+		   FROM employee
+) select case when term_status=fte_status then 'correct'
+		 else 'part_time_employees_assigned_as full time'
+		 end as c,COUNT(*)
+from cte_status
+group by c
 ```
+|c|count|
+|-|-----|
+|part_time_employees_assigned_as full time|6|
+|correct|24|
+
 
 > Check if termed employees are marked as active.
 
 ```
-SELECT COUNT(*) AS IMPACTED_RECORD_COUNT,
-	CASE 
-		WHEN COUNT(*)>0 THEN 'FAILED'
-		ELSE 'PASSED'
-		END AS TEST_RESULT
-FROM(
-
+with cte_term_status AS(
 	SELECT CASE WHEN TERM_DATE='' THEN TRUE 
 		   ELSE FALSE
-		   END AS TERM_STATUS
-FROM EMPLOYEE
-EXCEPT 
-SELECT IS_ACTIVE FROM EMPLOYEE
-)RESULT;
-
-
---with CTE
-WITH cte_term_status AS(
-SELECT CASE WHEN TERM_DATE='' THEN TRUE 
-		   ELSE FALSE
-		   END AS TERM_STATUS
-FROM EMPLOYEE
+		   END AS term_status,
+		   is_active
+		 from employee
 )
-select * from cte_term_status
-EXCEPT 
-select is_active from employee
+select case when term_status = is_active then 'CORRECT'
+		else 'INCORRECT'
+		end as label,
+		COUNT(*)
+from cte_term_status
+group by label
 ```
+|label|count|
+|-----|-----|
+|CORRECT|30|
+
 
 
 > Check if the same product is listed more than once in a single bill.
@@ -112,27 +96,47 @@ from SALES
 group by bill_no,product_id
 ) as c
 group by result
-
 ```
+|result|count|
+|------|-----|
+|PASS|915|
+
+
 
 > Check if the customer_id in the sales table does not exist in the customer table.
-
 ```
-select COUNT(*) as total_fail
+select COUNT(*) as impacted_record_count,
+		case when COUNT(*)>0 THEN 'Failed'
+		else 'Passed'
+		end as test_status
 FROM(
 select distinct customer_id from sales s 
 except 
 select customer_id from customer
 )as result;
 ```
+|impacted_record_count|test_status|
+|---------------------|-----------|
+|0|Passed|
+
+
+
 
 > Check if there are any records where updated_by is not empty but updated_date is empty.
 
 
 ```
+select COUNT(*) as Failed
+FROM(
 select updated_by,updated_date from SALES
-where updated_by is not NULL  and updated_date is null
+where updated_by !=''  and updated_date is null
+) R
+
+|failed|
+|------|
+|57|
 ```
+
 
 > Check if there are any hours worked that are greater than 24 hours.
 
@@ -145,6 +149,10 @@ where hours_worked>24
 ) as result;
 
 ```
+|total_count_more_than_24hr_work|
+|-------------------------------|
+|0|
+
 
 > Check if non on-call employees are set as on-call.
 
@@ -162,9 +170,12 @@ and t.shift_date =tr.punch_apply_time
 and tr.paycode !='ON_CALL'
 and t.was_on_call =true
 ```
+|impacted_record_count|test_status|
+|---------------------|-----------|
+|176|failed|
+
 
 > Check if the break is true for employees who have not taken a break at all.
-
 
 ```
 select 
@@ -179,6 +190,10 @@ and t.shift_date =tr.punch_apply_time
 and tr.paycode !='BREAK'
 and t.has_taken_break =true
 ```
+|impacted_record_count|test_status|
+|---------------------|-----------|
+|523|failed|
+
 
 > Check if the night shift is not assigned to the employees working on the night shift.
 
