@@ -263,7 +263,19 @@ on
 
 ### Check if the night shift is not assigned to the employees working on the night shift.
 
+The below code is not working , I am trying out, I will update as soon as I get it solved
 ```
+--I consider pinch_in_time after 6PM is of night shift
+with cte_hours as (
+select when EXTRACT(hours from tr.punch_in_time)>18 THEN 'Night'
+		else 'other'
+		end as shift_from_hour,
+t.shift_type
+from timesheet_raw tr
+inner join timesheet t
+	on (tr.employee_id,tr.punch_apply_date) = (t.employee_id,t.shift_date)
+)select * FROM
+cte_hours
 ```
 
 
