@@ -70,7 +70,7 @@ fte_hours_weekly < weekly_hours
 ```
 
 ## Timesheet
-1. checking if the total hours_worked has excluded break_hour
+1. checking if the total hours in punch_start_time and punch_end_time falls below the hours worked
 ```
 with cte_hours as ( 
 select extract(hours from shift_end_time -shift_start_time) total_hours ,hours_worked -break_hour as worked_hours
