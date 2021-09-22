@@ -202,4 +202,42 @@ where weight_per_piece <=0
 
 ## Sales
 
+1. checking if the created_by and updated_by are different person
+```
+
+select COUNT(*) as total_impacted_count from sales
+where LOWER(created_by) != lower(updated_by) 
+AND updated_by !='' and updated_by != '-'
+```
+|total_impacted_count|
+|--------------------|
+|18|
+
+
+2. checking if the same bill_no is associated with different time or customer.
+```
+with cte_bill as (
+select bill_no,COUNT(*) as bill_count FROM(
+select distinct bill_no,bill_date,customer_id,COUNT(*) from sales s 
+group by bill_no,bill_date,customer_id
+)r
+group by bill_no
+) select COUNT(*)
+from cte_bill
+where bill_count>1
+```
+|count|
+|-----|
+|80|
+
+
+3. checking if the total_net_bill amount is not equal to gross_price  + tax_amount 
+```
+select COUNT(*) as total_impacted_count
+from sales
+where gross_price+tax_amount <> net_bill_amt 
+```
+|total_impacted_count|
+|--------------------|
+|0|
 
