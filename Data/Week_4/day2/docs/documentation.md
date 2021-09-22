@@ -57,7 +57,7 @@ m.role !='Manager'
 
 
 4.  Checking if the weekly_hours is less than fte
-5.  ```
+```
  with cte_check as (
  select fte*40 as fte_hours_weekly,weekly_hours 
  from employee
