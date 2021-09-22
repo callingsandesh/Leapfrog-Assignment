@@ -207,7 +207,7 @@ where weight_per_piece <=0
 
 select COUNT(*) as total_impacted_count from sales
 where LOWER(created_by) != lower(updated_by) 
-AND updated_by !='' and updated_by != '-'
+AND updated_by !=NULL and updated_by != NULL
 ```
 |total_impacted_count|
 |--------------------|
