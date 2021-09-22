@@ -81,12 +81,12 @@ select COUNT(*) as total_impacted_count,
 		else 'passed'
 		end as label
 from cte_hours
-where total_hours !=worked_hours and total_hours is not null
+where total_hours <worked_hours and total_hours is not null
 ```
-
 |total_impacted_count|label|
 |--------------------|-----|
-|213|failed|
+|0|passed|
+
 
 2. checking if the employees has shift_in_time  when he/she is absent.
 ```
